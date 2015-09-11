@@ -13,7 +13,7 @@ Software engineering tips &amp; tools for scientists writing Python code
    - separate GUI from calculation
    - a word about licenses
 
-###1.2 Coding convention### 
+###1.2 Coding convention###
 
 
    - Introduction to PEP8
@@ -33,7 +33,7 @@ Software engineering tips &amp; tools for scientists writing Python code
 
 ###2.3 Packages: wheels & deb###
 
-###2.4 Fat binaries### 
+###2.4 Fat binaries###
 
 3. Tests
 --------
