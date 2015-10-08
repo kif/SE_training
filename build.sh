@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SLIDES="Documentation Test Project"
+SLIDES="Distribution Documentation Test Project"
 BUILD_DIR="build"
 
 pushd $( dirname $0 )
