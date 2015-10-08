@@ -120,7 +120,8 @@ Tutorial on Git::
 
     http://gitref.org   
     https://training.github.com/kit/downloads/github-git-cheat-sheet.pdf
-
+    
+    http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf
 
 GitHub
 ......
@@ -146,3 +147,14 @@ The alternative to github for non-public projects is GitLab::
   http://gitlab.esrf.fr
 
 Similar to GitHub, it provides also Git-repository hosting,
+
+Different types of workflow
+...........................
+* Centralized Workflow (https://www.atlassian.com/git/tutorials/comparing-workflows/centralized-workflow)
+* Git Flow (https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
+* GitHub Flow (http://scottchacon.com/2011/08/31/github-flow.html)
+
+Typical way to contribute to OSS
+................................
+
+* http://scikit-image.org/docs/stable/contribute.html
