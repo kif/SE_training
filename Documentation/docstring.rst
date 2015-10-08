@@ -165,5 +165,3 @@ Sum-up
 - Docstring: A string as the first statement.
 - Documentation available from the interpreter: ``help``.
 - Usable by external tool to generate the documentation.
-
-Example: `rand.py <rand.py>`_

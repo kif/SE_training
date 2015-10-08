@@ -23,8 +23,8 @@ Outline
 
 ------
 
-Documentation
--------------
+Introduction
+------------
 
 What is this function doing?
 
@@ -34,6 +34,21 @@ What is this function doing?
        return (x & (x - 1)) == 0
 
 ------
+
+Introduction
+------------
+
+What is this function doing?
+
+.. code-block:: python
+
+   def is_power_of_two(value):
+       return (value & (value - 1)) == 0
+
+------
+
+Introduction
+------------
 
 What is this function doing?
 
