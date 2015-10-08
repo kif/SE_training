@@ -121,3 +121,7 @@ Pitfalls:
 External shared library (Qt, hdf5, ...)
 You can use the delocate utility to check which libraries you are linking against.
 For example, this is the result of running delocate-listdeps --all on a binary wheel for the tornado library:
+
+------
+
+.. include:: fat_binaries.rst
