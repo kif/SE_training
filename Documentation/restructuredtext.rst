@@ -165,7 +165,7 @@ Internal hyperlinks:
 
    .. _link_target:
 
-   Link to link_target_ (remark the single :).
+   Link to link_target_ (note the single :).
 
    Link to `The title`_.
 
@@ -310,6 +310,8 @@ Tools to convert rst
 - `pandoc <http://pandoc.org/>`_ a universal document converter:
   ``pandoc -s -t rst file.rst -o file.html``
 - `Sphinx <http://sphinx-doc.org/>`_.
+
+------
 
 Sum-up
 ......

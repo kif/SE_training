@@ -39,7 +39,7 @@ Provided that your Python package and its dependencies are **installed** on your
 
 - At the root of your source project, run::
 
-    sphinx-apidoc -F -o doc/ <python_module_directory>
+    sphinx-apidoc -F -o doc/ <package_directory>
 
   This creates and populates the ``doc/`` directory.
 - In the ``doc/`` directory, run ``make html`` and your documentation is generated in the ``_build/html/`` directory, starting with ``index.html``.
