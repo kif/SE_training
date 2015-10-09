@@ -149,6 +149,12 @@ From now on, you should be able to:
 Binary packages can be *exe* and *msi* under Windows, *zip* under MacOSX,
 *tar.gz* or *rpm* under linux, ...
 
+Nota:
+.....
+Only python files will be part of your source package for now.
+If you want to include additionnal files (like README, ...)
+declare them in the *MANIFEST.in*.
+
 ---------------
 
 Dependencies
@@ -275,6 +281,10 @@ You should find your python-*package**.deb in deb_dist directory.
 
 stdeb can be configured with an additionnal file: *stdeb.cfg*
 
+
+To build both Python2 & Python3 packages use:
+.. code-block:: shell
+   python3 setup.py --command-packages=stdeb.command sdist_dsc --with-python2=True --with-python3=True --no-python3-scripts=True bdist_deb
 
 ------
 
