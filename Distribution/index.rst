@@ -1,3 +1,13 @@
+
+.. raw:: html
+
+   <!-- Patch landslide slides background color --!>
+   <style type="text/css">
+   div.slide {
+       background: #fff;
+   }
+   </style>
+
 Distribute Python software
 ==========================
 
@@ -67,8 +77,9 @@ plop
 ---------------
 
 
-*setup.py* dependency versus *requirement.txt*
-..............................................
+*setup.py* dependency vs *requirement.txt*
+..........................................
+
 Info: https://caremad.io/2013/07/setup-vs-requirement/
 
 * *setup.py* provides an abstract dependency (i.e. h5py)
@@ -83,10 +94,12 @@ Packages are the best way to distribute a library, regardless to the operating s
 For (graphical) application Fat-binaries may be a better choice, especially under Windows and MacOSX and will be discussed in next chapter
 
 There are 2 kind of packages to be distinguished:
+
 * Operating system packages: RPM, DEB, ...
 * Python specific packages: Wheels (obsoletes eggs)
 
 Advantages of packaging tools:
+
 * keeps track of installed packages
 * management of dependencies
 * provides access to a package repository.
@@ -117,12 +130,15 @@ Building Wheels
 ---------------
 
 You will need setuptools and wheel::
+
   apt-get install setuptools wheel
 
 or::
+
   pip install setuptools wheel --user
 
 then::
+
   python setup.py bdist_wheel
 
 Pitfalls:
@@ -130,3 +146,7 @@ Pitfalls:
 External shared library (Qt, hdf5, ...)
 You can use the delocate utility to check which libraries you are linking against.
 For example, this is the result of running delocate-listdeps --all on a binary wheel for the tornado library:
+
+------
+
+.. include:: fat_binaries.rst

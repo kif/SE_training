@@ -1,17 +1,66 @@
 
-Documenting Python modules
-==========================
+.. raw:: html
+
+   <!-- Patch landslide slides background color --!>
+   <style type="text/css">
+   div.slide {
+       background: #fff;
+   }
+   </style>
+
+Documenting Python packages
+===========================
 
 Outline
 -------
 
-#. Different types of documentations
-#. README
+#. Introduction
 #. Docstrings
 #. reStructuredText
 #. Sphinx
 #. Continuous Documentation
 #. Conclusion
+
+------
+
+Introduction
+------------
+
+What is this function doing?
+
+.. code-block:: python
+
+   def p(x):
+       return (x & (x - 1)) == 0
+
+------
+
+Introduction
+------------
+
+What is this function doing?
+
+.. code-block:: python
+
+   def is_power_of_two(value):
+       return (value & (value - 1)) == 0
+
+------
+
+Introduction
+------------
+
+What is this function doing?
+
+.. code-block:: python
+
+   def is_power_of_two(value):
+       return (value & (value - 1)) == 0
+
+Better but still missing some information:
+
+- Limitation: This function returns True for 0
+- It supports numpy array of int of any dimension as input
 
 ------
 
