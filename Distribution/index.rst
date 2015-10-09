@@ -25,9 +25,34 @@ The setup.py is the core of the python distribution:
    :align: center
    :width: 500
 
-This setup.py is basically a call to the setup function provided by distutils or setuptools (the later being preferred)
+This setup.py is basically a call to the setup function provided by distutils or
+setuptools (the later being preferred)
+
+The next slides will present you an incremental way to make from scratch the
+*setup.py* for your project.
+
+For now, just import the setup function for setuptools or distutils:
+
+.. code-block:: python
+   try:
+       from setuptools import setup
+   except ImportError:
+       from distutils.core import setup
+
+   setup(name='silx',
+         version='0.0.1',
+         py_modules=['silx'],
+         )
+
+https://docs.python.org/3.5/distutils/apiref.html
 
 ---------------
+
+Start with the begining: Registration
+-------------------------------------
+
+http://pypi.python.org is the central repository which will tell you if a
+project name is available.
 
 
 
