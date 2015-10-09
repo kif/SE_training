@@ -2,6 +2,9 @@
 Software engineering tips &amp; tools for scientists writing Python code
 ========================================================================
 
+Initial idea from software carpentry:
+http://swcarpentry.github.io/slideshows/best-practices/index.html
+http://dx.doi.org/10.1371/journal.pbio.1001745
 
 1. Structure the project
 ------------------------
@@ -21,7 +24,7 @@ Software engineering tips &amp; tools for scientists writing Python code
 
 ###1.3 Use a version control system###
 
-   - Git version control 
+   - Git version control
    - Workflow enforced by GitHub
 
 2. Distribute the software
@@ -69,4 +72,4 @@ Software engineering tips &amp; tools for scientists writing Python code
 
 ###4.3 Continuous documentation###
 
-    - ReadTheDocs.org 
+    - ReadTheDocs.org

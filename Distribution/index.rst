@@ -51,7 +51,6 @@ For now, just import the setup function for setuptools or distutils:
 
    setup(name='silx',
          version='0.0.1',
-         py_modules=['silx'],
          )
 
 https://docs.python.org/3.5/distutils/apiref.html
@@ -61,17 +60,125 @@ https://docs.python.org/3.5/distutils/apiref.html
 Start with the begining: Registration
 -------------------------------------
 
-http://pypi.python.org is the central repository which will tell you if a
-project name is available.
+PyPI
+....
 
+Central registration point: http://pypi.python.org
 
+.. figure:: PyPI.png
+   :align: center
+   :width: 500
+
+---------------
+
+Actual registration:
+--------------------
+Add information about the author, emails and classifiers like:
+
+.. code-block:: python
+
+   setup(name='silx',
+         version='0.0.1',
+         url="https://github.com/silex-kit/silx",
+         author="data analysis unit",
+         author_email="silx@esrf.fr",
+         classifiers = ["Development Status :: 1 - Planning",
+                        "Environment :: Console",
+                        "Environment :: MacOS X",
+                        "Environment :: Win32 (MS Windows)",
+                        "Environment :: X11 Applications :: Qt",
+                        "Intended Audience :: Education",
+                        "Intended Audience :: Science/Research",
+                        "License :: OSI Approved :: MIT License",
+                        "Natural Language :: English",
+                        "Operating System :: Microsoft :: Windows",
+                        "Operating System :: POSIX",
+                        "Programming Language :: Cython",
+                        "Programming Language :: Python",
+                        "Programming Language :: Python :: Implementation :: CPython",
+                        "Topic :: Documentation :: Sphinx",
+                        "Topic :: Scientific/Engineering :: Physics",
+                        "Topic :: Software Development :: Libraries :: Python Modules",
+                        ]
+
+         )
+
+then:
+
+.. code-block:: shell
+    python setup.py register
+
+All information should now be availabe online.
+It is advised to separate classifiers in a dedicated list.
+
+Available classifiers:
+https://pypi.python.org/pypi?%3Aaction=list_classifiers
+
+---------------
+
+Define your package
+-------------------
+
+Create a directory of the name of your module and a __init__.py file in it.
+Modify your setup.py accordingly.
+
+.. code-block:: python
+   setup(name='silx',
+         version='0.0.1',
+         url="https://github.com/silex-kit/silx",
+         author="data analysis unit",
+         author_email="silx@esrf.fr",
+         classifiers = classifiers,
+         description="Software library for X-Ray data analysis",
+         packages=["silx", "silx.io", "silx.third_party", "silx.visu"],
+         )
+
+In this example the *io*, *third_party* and *visu* sub-packages have also been
+declared.
+
+You can now build your module with:
+
+.. code-block:: shell
+    python setup.py build
+
+From now on, you should be able to:
+* create a source package with *python setup.py sdist*
+* install your package with *python setup.py install*
+* create a binary package with *python setup.py bdist*
+
+Binary packages can be *exe* and *msi* under Windows, *zip* under MacOSX,
+*tar.gz* or *rpm* under linux, ...
 
 ---------------
 
 Dependencies
 ------------
 
-plop
+Dependency management is available at 3 different levels:
+* from setuptools
+* from PIP requirement file
+* from Debian packages
+
+Dependencies allow the user to know what other library is required.
+Those requirement can be build requirement or use requirement:
+*install_requires* and *setup_requires*
+
+.. code-block:: python
+   install_requires = ["numpy", "h5py"]
+   setup_requires = ["numpy", "cython"]
+
+   setup(name='silx',
+         version=get_version(),
+         url="https://github.com/silex-kit/silx",
+         author="data analysis unit",
+         author_email="silx@esrf.fr",
+         classifiers = classifiers,
+         description="Software library for X-Ray data analysis",
+         long_description=get_readme(),
+         packages=["silx", "silx.io", "silx.third_party", "silx.visu"],
+         install_requires=install_requires,
+         setup_requires=setup_requires,
+         )
 
 
 ---------------
@@ -129,15 +236,21 @@ They provide binary packages and a decent installer (pip) for Windows and MacOSX
 Building Wheels
 ---------------
 
-You will need setuptools and wheel::
+You will need setuptools and wheel:
+
+.. code-block:: shell
 
   apt-get install setuptools wheel
 
-or::
+or:
+
+.. code-block:: shell
 
   pip install setuptools wheel --user
 
-then::
+then:
+
+.. code-block:: shell
 
   python setup.py bdist_wheel
 
@@ -145,7 +258,23 @@ Pitfalls:
 ---------
 External shared library (Qt, hdf5, ...)
 You can use the delocate utility to check which libraries you are linking against.
-For example, this is the result of running delocate-listdeps --all on a binary wheel for the tornado library:
+For example, this is the result of running delocate-listdeps --all on a binary
+wheel for the pyqt library:
+
+---------------
+
+Debian packages
+---------------
+
+To build debian packages we recommend an additionnal tool: *stdeb*
+.. code-block:: shell
+   sudo apt-get install python-stdeb python3-stdeb
+   python setup.py --command-packages=stdeb.command bdist_deb
+
+You should find your python-*package**.deb in deb_dist directory.
+
+stdeb can be configured with an additionnal file: *stdeb.cfg*
+
 
 ------
 
