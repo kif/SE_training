@@ -26,16 +26,19 @@ References:
 
 ---------------
 
-setup.py
---------
+The core of the distribution: *setup.py*
+----------------------------------------
 
-The setup.py is the core of the python distribution:
-
-.. figure:: setup.svg
+.. figure:: setup.png
    :align: center
    :width: 500
 
-This setup.py is basically a call to the setup function provided by distutils or
+----
+
+*setup.py*
+----------
+
+This *setup.py* is basically a call to the setup function provided by distutils or
 setuptools (the later being preferred)
 
 The next slides will present you an incremental way to make from scratch the
@@ -57,13 +60,11 @@ https://docs.python.org/3.5/distutils/apiref.html
 
 ---------------
 
-Start with the begining: Registration
--------------------------------------
+Registration
+------------
 
-PyPI
-....
 
-Central registration point: http://pypi.python.org
+The central registration point is the Python Package Index `PyPI <http://pypi.python.org>`_
 
 .. figure:: PyPI.png
    :align: center
@@ -71,8 +72,8 @@ Central registration point: http://pypi.python.org
 
 ---------------
 
-Actual registration:
---------------------
+Actual registration (1/2):
+--------------------------
 Add information about the author, emails and classifiers like:
 
 .. code-block:: python
@@ -103,7 +104,10 @@ Add information about the author, emails and classifiers like:
 
          )
 
-then:
+---------------
+
+Actual registration (2/2):
+--------------------------
 
 .. code-block:: shell
     python setup.py register
@@ -111,18 +115,31 @@ then:
 All information should now be availabe online.
 It is advised to separate classifiers in a dedicated list.
 
-Available classifiers:
-https://pypi.python.org/pypi?%3Aaction=list_classifiers
+List of available `classifiers <https://pypi.python.org/pypi?%3Aaction=list_classifiers>`_
 
 ---------------
 
-Define your package
--------------------
+Define your package (1/3)
+-------------------------
 
-Create a directory of the name of your module and a __init__.py file in it.
+Create a directory of the name of your package and a *__init__.py* file in it.
+
+::
+
+  project/
+     |---- setup.py
+     |---- package/
+     |       |----- __init__.py
+
+---------------
+
+Define your package (2/3)
+-------------------------
+
 Modify your setup.py accordingly.
 
 .. code-block:: python
+
    setup(name='silx',
          version='0.0.1',
          url="https://github.com/silex-kit/silx",
@@ -136,17 +153,38 @@ Modify your setup.py accordingly.
 In this example the *io*, *third_party* and *visu* sub-packages have also been
 declared.
 
+----
+
+Define your package (3/3)
+-------------------------
+
 You can now build your module with:
 
 .. code-block:: shell
+
     python setup.py build
 
 From now on, you should be able to:
-* create a source package with *python setup.py sdist*
-* install your package with *python setup.py install*
-* create a binary package with *python setup.py bdist*
 
-Binary packages can be *exe* and *msi* under Windows, *zip* under MacOSX,
+Create a source package with:
+.............................
+.. code-block:: shell
+
+    python setup.py sdist
+
+Install your package with
+.........................
+.. code-block:: shell
+
+    python setup.py install
+
+Create a binary package with
+............................
+.. code-block:: shell
+
+    python setup.py bdist
+
+And alos binary packages can be *exe* and *msi* under Windows, *zip* under MacOSX,
 *tar.gz* or *rpm* under linux, ...
 
 Nota:
@@ -161,15 +199,17 @@ Dependencies
 ------------
 
 Dependency management is available at 3 different levels:
+
 * from setuptools
 * from PIP requirement file
 * from Debian packages
 
 Dependencies allow the user to know what other library is required.
 Those requirement can be build requirement or use requirement:
-*install_requires* and *setup_requires*
+*install_requires* and *setup_requires*:
 
 .. code-block:: python
+
    install_requires = ["numpy", "h5py"]
    setup_requires = ["numpy", "cython"]
 
@@ -193,16 +233,21 @@ Those requirement can be build requirement or use requirement:
 *setup.py* dependency vs *requirement.txt*
 ..........................................
 
-Info: https://caremad.io/2013/07/setup-vs-requirement/
+It may look contradictory to define dependencies at different places
+`but it is not <https://caremad.io/2013/07/setup-vs-requirement/>`_.
 
 * *setup.py* provides an abstract dependency (i.e. h5py)
-* *requirenement.txt* provides concrete implementation (often with hard coded versions and URL to download wheels from).
+* *requirenement.txt* provides concrete implementation (often with hard coded
+   versions and URL to download wheels from).
   This is often organization specific or CI-tool specific: h5py==2.5.0
+
+Dependencies defined in the setup.py are naturally propagated to packages (Debian, windows, ...)
 
 ---------------
 
 Building packages
 -----------------
+
 Packages are the best way to distribute a library, regardless to the operating system.
 For (graphical) application Fat-binaries may be a better choice, especially under Windows and MacOSX and will be discussed in next chapter
 
@@ -213,26 +258,27 @@ There are 2 kind of packages to be distinguished:
 
 Advantages of packaging tools:
 
-* keeps track of installed packages
-* management of dependencies
-* provides access to a package repository.
+* Keeps track of installed packages
+* Management of dependencies
+* Provides access to a package repository.
 
 ---------------
 
 
-Wheels (PEP427)
----------------
+Wheels: `PEP427 <https://www.python.org/dev/peps/pep-0427/>`_
+-------------------------------------------------------------
 
-Wheels are the new standard of python distribution and have replaced eggs.
-http://pythonwheels.com/
+Wheels are the `new standard <http://pythonwheels.com/>`_ of python distribution
+and have replaced *eggs*.
 
-Advantages of wheels
+
+Advantages of wheels:
 
 #. Faster installation for pure python and native C extension packages.
 #. Avoids arbitrary code execution for installation. (Avoids setup.py)
 #. Installation of a C extension does not require a compiler on Windows or OS X.
 #. Allows better caching for testing and continuous integration.
-#. Creates .pyc files as part of installation to ensure they match the python interpreter used.
+#. Creates .pyc files as part of installation to ensure they match the Python interpreter used.
 #. More consistent installs across platforms and machines.
 
 They provide binary packages and a decent installer (pip) for Windows and MacOSX.
@@ -242,7 +288,7 @@ They provide binary packages and a decent installer (pip) for Windows and MacOSX
 Building Wheels
 ---------------
 
-You will need setuptools and wheel:
+You will need setuptools and wheel installed:
 
 .. code-block:: shell
 
@@ -263,9 +309,11 @@ then:
 Pitfalls:
 ---------
 External shared library (Qt, hdf5, ...)
-You can use the delocate utility to check which libraries you are linking against.
-For example, this is the result of running delocate-listdeps --all on a binary
-wheel for the pyqt library:
+
+You can use the `delocate <https://github.com/matthew-brett/delocate>`_ utility
+on MacOSX to check which libraries your package is linked against.
+
+.. For example, this is the result of running delocate-listdeps --all on a binary wheel for the pyqt library:
 
 ---------------
 
@@ -285,6 +333,8 @@ stdeb can be configured with an additionnal file: *stdeb.cfg*
 To build both Python2 & Python3 packages use:
 .. code-block:: shell
    python3 setup.py --command-packages=stdeb.command sdist_dsc --with-python2=True --with-python3=True --no-python3-scripts=True bdist_deb
+
+`Alternative to be considered <https://github.com/p1otr/pypi2deb>`_
 
 ------
 
