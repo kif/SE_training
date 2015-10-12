@@ -94,14 +94,20 @@ It is more important than to document mechanics.
 Summary.
 --------
 
-While we agree on the *why* basic software engineering practice is important,
-it does not address the *how do I do* question.
+While we agree on the "*why ?*" basic software engineering practice is important,
+it does not address the "*how do I do ?*" question.
 
 We have tried to summarize all the needed information into a 1 day tutorial
-which we hope, will save you a lot of time in your future.
+which we hope, will save you a lot of time in your future:
 
-This training is deliberately focusing on Python only ...
+#. Structure your project
+#. Distribution and packaging
+#. Testing and validation
+#. Documentation
 
-There should be one *and preferably only one* obvious way to do it.
-...................................................................
+This training is focusing on Python only ... and presents a deliberately
+simplified view:
+
+There should be one, *and preferably only one*, obvious way to do it.
+.....................................................................
 
