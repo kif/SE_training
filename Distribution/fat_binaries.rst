@@ -29,7 +29,9 @@ Issues:
 
 - Analysis can miss some hidden imports.
 - All runtime dependencies must be included (including external libraries wrapped by Python packages).
+- Data files cannot be guessed and need to be explicitly added.
 
+Test on a different computer.
 
 ------
 
@@ -42,9 +44,11 @@ Tools
 
 \ 
 
-- `pex <https://github.com/pantsbuild/pex>`_: Linux, Mac OS X
+- `Platypus <http://www.sveinbjorn.org/platypus>`_: Mac OS X
+- `pynsist <https://pypi.python.org/pypi/pynsist>`_: Windows
 - `py2exe <https://pypi.python.org/pypi/py2exe/>`_: Windows
 - `bbFreeze <https://pypi.python.org/pypi/bbfreeze>`_: Windows, Linux
+- `pex <https://github.com/pantsbuild/pex>`_: Linux, Mac OS X
 
 ------
 
@@ -54,6 +58,8 @@ PyInstaller
 `PyInstaller <http://www.pyinstaller.org/>`_ is a command line tool to freeze Python scripts into executables.
 
 Its goal is to integrate specific stuff for 3rd-party packages (e.g., PyQt, matplotlib) and Windows Runtime.
+
+It is cross-platform.
 
 ------
 
@@ -79,13 +85,13 @@ PyInstaller
 
 On Windows:
 
-- ``<script>.exe`` is in ``dist/<script>``
-- Then use a tool such as `NSIS <http://nsis.sourceforge.net/>`_ to create an installer from this directory.
+- Result is in ``dist/<script>``
+- Then you can use a tool such as `NSIS <http://nsis.sourceforge.net/>`_ to create an installer from the directory.
 
-On Mac OS X:
-
-- Always create a command line executable.
-- With ``--windowed`` create a Mac Application (i.e., ``.app``).
+.. On Mac OS X:
+   
+   - Always create a command line executable.
+   - With ``--windowed`` create a Mac Application (i.e., ``.app``).
 
 ------
 
@@ -105,17 +111,104 @@ See `doc <http://pythonhosted.org/PyInstaller/>`_.
 cx_Freeze
 .........
 
-Write a ``cx_setup.py``.
+`cx_Freeze <http://cx-freeze.readthedocs.org/>`_ extends ``distutils``.
 
+It is cross-platform.
+
+Install ``cx_Freeze``: ``pip install cx_Freeze``.
 
 ------
 
 cx_Freeze
 .........
 
-First install your package and its dependencies
+cx_setup.py:
+
+.. code-block:: python
+
+   from cx_Freeze import setup, Executable
+
+   build_exe_options = {
+       'packages': [],
+       'includes': [],
+       'excludes': [],
+       'include_files': []
+   }
+
+   if sys.platform == 'win32':
+       build_exe_options['include_msvcr'] = True
+
+   base = 'Win32GUI' if sys.platform == 'win32' else None
+
+   setup(name='my_app',
+         version='0.1',
+         options={
+             'build_exe': build_exe_options,
+             'bdist_dmg': {'applications-shortcut': True}
+         },
+         executables=[Executables('my_app.py', base=base)])
+
+------
+
+cx_Freeze
+.........
+
+First install your package and its dependencies.
 
 On Windows, run ``python cx_setup.py build_exe`` to build a directory with all required files.
-Then create an installer with NSIS.
+Then create an installer with a tool such as `NSIS <http://nsis.sourceforge.net/>`_.
 
 On Mac OS X, run ``python cx_setup.py bdist_dmg`` to build a .dmg with an .app included.
+
+------
+
+py2app
+......
+
+MAC OS X specific *freezing* tool.
+
+py2app_setup.py:
+
+.. code-block:: python
+
+  from setuptools import setup
+
+  setup(app=['my_app_script.py'],
+        setup_requires=['py2app'],
+        options={'py2app': {
+            'argv_emulation': True,
+            'packages': [],  # List of packages
+            'iconfile': 'icon_file.icns',
+        }}
+  )
+
+Run ``python py2app_setup.py py2app`` to build an application bundle ``.app`` in ``dist/``.
+
+------
+
+Mac Application Bundle
+......................
+
+A Mac OS X application (``.app``) is a directory also called an *application bundle*.
+
+It contains::
+
+  App.app/
+      Contents/
+          Info.plist  -> Bundle configuration file (XML)
+          MacOS/      -> Contains the executable file
+          Resources/  -> Application resources
+          Frameworks/ -> frameworks: dynamic libraries and there resources
+          ...
+
+See `bundle doc <https://developer.apple.com/library/mac/documentation/CoreFoundation/Conceptual/CFBundles/BundleTypes/BundleTypes.html>`_.
+
+------
+
+Sum-up
+......
+
+Different tools to freeze.
+
+Main issue: Making sure it is standalone and include everything required.
+
