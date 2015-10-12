@@ -24,7 +24,7 @@ Docstring conventions `PEP 257 <https://www.python.org/dev/peps/pep-0257/>`_:
    import random
 
    def rand():
-       """Returns a random floating point."""  # Function docstring
+       """Returns a random floating point number."""  # Function docstring
        return random.random()
 
 ------
@@ -46,12 +46,12 @@ Purpose
   Help on function rand in module rand:
 
   rand()
-      Returns a random floating point.
+      Returns a random floating point number.
 
 .. code-block:: python
 
   >>> rand.rand.__doc__  # Access to docstring
-  "Returns a random floating point."
+  "Returns a random floating point number."
 
 - Used by external tools to generate the documentation.
 

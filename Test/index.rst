@@ -147,7 +147,7 @@ It allows to send keyboard and mouse events to widgets.
 
   ...
 
-Tighly coupled with the code it test.
+Tighly coupled with the code it tests.
 It needs to know the widget instance and hard code the position of mouse events.
 
 ------
@@ -229,7 +229,7 @@ Principle:
 - Add a ``.yml`` file to your repository describing:
 
   - The test environment
-  - The build installation of the dependencies and the package
+  - Build and installation of the dependencies and the package
   - The way to run the tests.
 
 - Upon commit, clones the repository and runs the tests.

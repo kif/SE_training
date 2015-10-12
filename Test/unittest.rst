@@ -442,7 +442,7 @@ Test coverage
 
 Using `coverage.py <https://coverage.readthedocs.org>`_ to gather coverage statistics while running the tests:
 
-#. Install ``coverage.py`` package.
+#. Install ``coverage.py`` package: ``pip install coverage``.
 #. Run the tests: ``python -m coverage run --source <package_dir> run_tests.py``
 #. Show report:
 
