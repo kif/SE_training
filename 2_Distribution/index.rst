@@ -237,7 +237,7 @@ It may look contradictory to define dependencies at different places
 `but it is not <https://caremad.io/2013/07/setup-vs-requirement/>`_.
 
 * *setup.py* provides an abstract dependency (i.e. h5py)
-* *requirenement.txt* provides concrete implementation (often with hard coded
+* *requirement.txt* provides concrete implementation (often with hard coded
    versions and URL to download wheels from).
   This is often organization specific or CI-tool specific: h5py==2.5.0
 
@@ -254,7 +254,7 @@ For (graphical) application Fat-binaries may be a better choice, especially unde
 There are 2 kind of packages to be distinguished:
 
 * Operating system packages: RPM, DEB, ...
-* Python specific packages: Wheels (obsoletes eggs)
+* Python specific packages: Wheels (it obsoletes eggs)
 
 Advantages of packaging tools:
 
@@ -292,7 +292,7 @@ You will need setuptools and wheel installed:
 
 .. code-block:: shell
 
-  apt-get install setuptools wheel
+  apt-get install python-setuptools python-wheel
 
 or:
 
@@ -313,6 +313,8 @@ External shared library (Qt, hdf5, ...)
 You can use the `delocate <https://github.com/matthew-brett/delocate>`_ utility
 on MacOSX to check which libraries your package is linked against.
 
+TODO: Under Windows: depends 
+
 .. For example, this is the result of running delocate-listdeps --all on a binary wheel for the pyqt library:
 
 ---------------
@@ -321,8 +323,11 @@ Debian packages
 ---------------
 
 To build debian packages we recommend an additionnal tool: *stdeb*
+
 .. code-block:: shell
+
    sudo apt-get install python-stdeb python3-stdeb
+   
    python setup.py --command-packages=stdeb.command bdist_deb
 
 You should find your python-*package**.deb in deb_dist directory.
@@ -331,7 +336,9 @@ stdeb can be configured with an additionnal file: *stdeb.cfg*
 
 
 To build both Python2 & Python3 packages use:
+
 .. code-block:: shell
+
    python3 setup.py --command-packages=stdeb.command sdist_dsc --with-python2=True --with-python3=True --no-python3-scripts=True bdist_deb
 
 `Alternative to be considered <https://github.com/p1otr/pypi2deb>`_

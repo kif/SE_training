@@ -11,7 +11,7 @@
 Software engineering tips & tools
 =================================
 
-The initial idea has been stollen from
+The initial idea has been stolen from
 `software carpentry <http://swcarpentry.github.io/slideshows/best-practices/index.html>`_
 defined in this `publication <http://dx.doi.org/10.1371/journal.pbio.1001745>`_
 from 2014.

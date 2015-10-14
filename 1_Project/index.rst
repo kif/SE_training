@@ -29,8 +29,14 @@
 Structure your code
 -------------------
 
-   - Separate library from scripts: libraries are reuseable
-   - Separate GUI from calculation: unless maintenance become a nightmare
+   - Separate library from scripts: 
+
+      * libraries are reuseable
+
+   - Separate GUI from calculation:
+      *  Otherwise maintenance become a nightmare
+      *  allows to change the front-end
+
    - Define a licenses for your work.
 
 ----
@@ -49,21 +55,29 @@ According to the French law, one should distinguish authorship from ownership:
 Licenses define how a piece of software can be used (and sometimes what for).
 None of them claim any liability of the author.
 
+----
+
 One can define 2 categories:
+----------------------------
 
 - Proprietary licenses
+
   * Commercial licenses: one needs to purchase a license to use the code
   * Academic licenses: free for academic research
+
 - Open source licenses:
+
   * GPL like which allows the distribution of modified code but enforces the
-  publication of the modification
+    publication of the modification
   * MIT/BSD which provides the name of the author for information
-  (for scientific citation)
+    (for scientific citation)
 
 The Python scientific stack has a BSD-like licenses.
 Defining licenses for your developments is important as the beamline can not
 build code on top of unlicensed or proprietary work without explicit license
 agreement.
+
+DAU strongly recommends a MIT license.
 
 ----
 
@@ -137,6 +151,16 @@ Zen of Python: `PEP20 <https://www.python.org/dev/peps/pep-0020/>`_
 
 ----
 
+Tools
+-----
+
+* flake8
+* pylint
+* modernize
+
+
+----
+
 Version Control System
 ----------------------
 
@@ -205,7 +229,7 @@ The main advantages of GitHub are:
  - Download of releases
 
 Github is actually a social network, but unlike Linked'in or Facebook it
-focuses on code developers. Activities on Github are monitored by head-hunter
+focuses on code developers. Activities on Github are monitored by head-hunters
 and can be useful for professional placement.
 
 
@@ -222,6 +246,9 @@ but ESRF only.
 
 Different types of workflow
 ...........................
+
+TODO: more on workflows ...
+
 * `Centralized Workflow <https://www.atlassian.com/git/tutorials/comparing-workflows/centralized-workflow>`_
 * `Git Flow <https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow>`_
 * `GitHub Flow <http://scottchacon.com/2011/08/31/github-flow.html>`_
