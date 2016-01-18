@@ -17,12 +17,13 @@ Idea:
 -----
 
 * One unique way to read images for all kind of (area-) detectors.
-* Exposes always one frame which contains
+* Exposes always one frame which contains:
 
  + Metadata (header) exposed  as a dictionary
  + Data as a numpy array
 
-* handles transparently compression
+* handles transparently compression (compressed format and compressed images)
+* Offers ways to iterate over frames in an file or files in a serie
 
 Benefit:
 --------
@@ -138,7 +139,7 @@ how to read and write each image-format.
   the file.
 
 * Conversion:
-  File-format can be converted into another format.
+  File-format can be converted into another format, using the *convert* method.
   This tries to handle float to integer conversion when needed but not the header conversion.
 
 ----
@@ -174,3 +175,19 @@ Limitations
 -----------
 
 There is (good) support for HDF5/NeXus. For this use `h5py <http://docs.h5py.org/en/latest/high/dataset.html>`_.
+
+----
+
+Exercise: Image normalization
+-----------------------------
+
+Download images from:
+https://github.com/kif/python_tutorials/tree/master/scipy_exercise_0
+
+* Load *raw.edf*: it is an absorption images which need to be corrected for dark current and flat-field.
+* Correct from dark noise of the camera, use information from the headers.
+* Average the two flat field images after correction from their dark.
+* Divide the raw signal by the flat field
+* Visualize the result using *matplotlib*.
+* Save the result as an *EDF* image and a *Tiff* image, visualize them using fabio-viewer.
+
